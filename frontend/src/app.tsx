@@ -117,10 +117,11 @@ const App = () => {
     setActiveKey("");
     setDeploy(null);
     setSignProvider(signProvider);
-  }
+  };
 
   const [activeKey, setActiveKey] = useState<ActiveKeyType>("");
   const [deploy, setDeploy] = useState<DeployUtil.Deploy | null>(null);
+  const [deployHash, setDeployHash] = useState<string | null>(null);
 
   const signAndSendDeploy = async (deploy: DeployUtil.Deploy) => {
     if (signProvider === SignProviders.Signer) {
@@ -131,18 +132,35 @@ const App = () => {
         activeKey
       );
 
-      const response = await fetch("http://localhost:3001/put-deploy", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signedDeployJSON),
-      }).then((resp) => resp.json());
+      const reconstructedDeploy =
+        DeployUtil.deployFromJson(signedDeployJSON).unwrap();
 
-      const { hash } = response;
+      const hash = await reconstructedDeploy.send("/node-rpc/");
+
+      setDeployHash(hash);
     }
     if (signProvider === SignProviders.Torus) {
       console.log("Torus");
+    }
+  };
+
+  const renderProperContent = () => {
+    if (activeKey && deployHash) {
+      return <div>
+        <h1>Deploy hash:</h1> {deployHash}
+      </div>
+    }
+    if (activeKey && !deploy) {
+      return <CEP47View activeKey={activeKey} setDeploy={setDeploy} />;
+    }
+    if (activeKey && deploy) {
+      return (
+        <ReadyDeployView
+          deploy={deploy!}
+          activeKey={activeKey}
+          signAndSendDeploy={signAndSendDeploy}
+        />
+      );
     }
   };
 
@@ -154,18 +172,7 @@ const App = () => {
         activeKey={activeKey}
         setActiveKey={setActiveKey}
       />
-      <div className="w-50 center bg-white pa3">
-        {activeKey && !deploy && (
-          <CEP47View activeKey={activeKey} setDeploy={setDeploy} />
-        )}
-        {activeKey && deploy && (
-          <ReadyDeployView
-            deploy={deploy!}
-            activeKey={activeKey}
-            signAndSendDeploy={signAndSendDeploy}
-          />
-        )}
-      </div>
+      <div className="w-50 center bg-white pa3">{renderProperContent()}</div>
     </div>
   );
 };
