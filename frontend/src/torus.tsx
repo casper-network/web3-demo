@@ -39,7 +39,7 @@ const TorusController = ({
 
   useEffect(() => {
     const asyncFn = async () => {
-      // const torus = new Torus();
+      const torus = new Torus();
       // await torus.init({
       //   buildEnv: "testing",
       //   showTorusButton: true,
