@@ -10,7 +10,8 @@ The purposes of this demo is to provide an example that shows integratin with wa
 
 ### Future improvements
 
-[] - Currently tor.us wallet throws an Error when trying to create deploy containing `ModuleBytes` (eg. Install CEP47).
-[] - Add more comments in code for clarification.
-[] - Add more deploy templates. 
-[] - Improve UI so it gives deploys preview
+- [ ] Currently tor.us wallet throws an Error when trying to create deploy containing `ModuleBytes` (eg. Install CEP47).
+- [ ] Add more comments in code for clarification.
+- [ ] Add more deploy templates. 
+- [ ] Improve UI so it gives deploys preview
+
