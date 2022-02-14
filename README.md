@@ -14,4 +14,5 @@ The purposes of this demo is to provide an example that shows integratin with wa
 - [ ] Add more comments in code for clarification.
 - [ ] Add more deploy templates. 
 - [ ] Improve UI so it gives deploys preview
+- [ ] Add simple backend to show usage of `EventStream`
 
