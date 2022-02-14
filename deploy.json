@@ -1,0 +1,65 @@
+{
+  "hash": "c5c36a3c40fe5b1fbd36b54cd050e87159d641658b06f95f9a67f2a93bbd6f6c",
+  "header": {
+    "account": "014ddd86cc42d2c3dbc860eb9ad7f03ff5b2769d363aa5e0e0ab51a00c1f1be398",
+    "timestamp": "2022-02-14T08:40:06.195Z",
+    "ttl": "30m",
+    "gas_price": 1,
+    "body_hash": "693e2dc20a575f0825cc284d4d4a3b22ee62bf69b84e6cd4e48ef28cba1e169f",
+    "dependencies": [],
+    "chain_name": "casper-net-1"
+  },
+  "payment": {
+    "ModuleBytes": {
+      "module_bytes": "",
+      "args": [
+        [
+          "amount",
+          {
+            "cl_type": "U512",
+            "bytes": "0500743ba40b",
+            "parsed": "50000000000"
+          }
+        ]
+      ]
+    }
+  },
+  "session": {
+    "Transfer": {
+      "args": [
+        [
+          "amount",
+          {
+            "cl_type": "U512",
+            "bytes": "070080c6a47e8d03",
+            "parsed": "1000000000000000"
+          }
+        ],
+        [
+          "target",
+          {
+            "cl_type": "PublicKey",
+            "bytes": "02035a62b114eaae5213bdc66c647999b0d5e46e5f47a32299a241be75450c681ebf",
+            "parsed": "02035a62b114eaae5213bdc66c647999b0d5e46e5f47a32299a241be75450c681ebf"
+          }
+        ],
+        [
+          "id",
+          {
+            "cl_type": {
+              "Option": "U64"
+            },
+            "bytes": "01611e000000000000",
+            "parsed": 7777
+          }
+        ]
+      ]
+    }
+  },
+  "approvals": [
+    {
+      "signer": "014ddd86cc42d2c3dbc860eb9ad7f03ff5b2769d363aa5e0e0ab51a00c1f1be398",
+      "signature": "01559d69ef50099ac7ef83d75ceac20bd4a07b7497eea15bc52feecc0e1721aaf47e3daed9e132d574e104d35e5d06b5cdc042cc6ebcaabd254288a9427f6adb0d"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+server {
+  listen 8080      default_server;
+  listen [::]:8080 default_server;
+
+  if ($request_method = "OPTIONS") {
+    return 200;
+  }
+
+  location @frontendproxy {
+    proxy_pass         http://frontend;
+    include /etc/nginx/my-includes/proxy.conf;
+    # kill cache
+    add_header Last-Modified $date_gmt;
+    add_header Cache-Control 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
+    if_modified_since off;
+    expires off;
+    etag off;
+
+    break;
+  }
+
+  location / {
+    try_files $uri $uri/ @frontendproxy;
+    break;
+  }
+
+  location /node-rpc/ {
+    proxy_pass ${NGINX_NODE_RPC};
+    proxy_pass_request_body on;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
+
+  location /health-check {
+    return 200;
+    access_log off;
+  }
+}
