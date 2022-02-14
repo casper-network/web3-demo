@@ -86,9 +86,12 @@ const App = () => {
 
   const signAndSendDeploy = async (deploy: DeployUtil.Deploy) => {
     if (!client) throw new Error("Client not set");
+
     if (signProvider === SignProviders.Signer) {
       const deployJSON = DeployUtil.deployToJson(deploy);
-      const targetPubKey = (deploy.session.transfer?.args.args.get("target") as CLPublicKey).toHex();
+
+      const targetPubKey = deploy.session.transfer ? (deploy.session.transfer?.args.args.get("target") as CLPublicKey).toHex() : activeKey;
+
       const signedDeployJSON = await Signer.sign(
         deployJSON,
         activeKey,
@@ -102,6 +105,7 @@ const App = () => {
 
       setDeployHash(deployHash);
     }
+
     if (signProvider === SignProviders.Torus) {
       const { deploy_hash: deployHash }= await client.deploy(deploy);
 
