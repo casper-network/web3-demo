@@ -3,29 +3,9 @@ import { DeployUtil, CLPublicKey, Signer } from "casper-js-sdk";
 
 import { cep47Client } from "../client";
 import type { ActiveKeyType, SetDeployFnType } from "../types.d";
+import { TextInput } from "../common";
 
 const INSTALL_PAYMENT_AMOUNT = "115000000000";
-
-const TextInput = ({
-  value,
-  onChange,
-  placeholder,
-}: {
-  value: string;
-  onChange: (value: string) => void;
-  placeholder: string;
-}) => (
-  <div className="mv2">
-    <input
-      type="text"
-      value={value}
-      onChange={(ev) => {
-        onChange(ev.target.value);
-      }}
-      placeholder={placeholder}
-    />
-  </div>
-);
 
 const InstallView = ({
   setDeploy,
@@ -84,7 +64,7 @@ const InstallView = ({
 
   return (
     <div> 
-      <h1>Install view</h1>
+      <h1>Install CEP47</h1>
       <div>
         {wasmFile ? (
           "WASM Uploaded"
