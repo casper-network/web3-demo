@@ -4,9 +4,16 @@ The purpose of this demo is to provide an example that shows integrating with wa
 
 ### Running
 
-1. Run `make dev-build` in the root directory.
-2. Run `make dev-start` in the root directory. This will start the project.
-3. Open `localhost:8080` in the browser.
+1. Two env variables are required, so you can create `.env` file with them
+
+```
+NODE_URL=http://135.181.208.231:7777/rpc
+NETWORK_NAME=casper-test
+```
+
+2. Run `make dev-build` in the root directory.
+3. Run `make dev-start` in the root directory. This will start the project.
+4. Open `localhost:8080` in the browser.
 
 ### Future improvements
 
